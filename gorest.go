@@ -17,8 +17,8 @@ type Error struct {
 // Response struct for API response
 type Response struct {
 	Status int         `json:"status"`
-	Error  *Error      `json:"error"`
-	Data   interface{} `json:"data"`
+	Error  *Error      `json:"error,omitempty"`
+	Data   interface{} `json:"data,omitempty"`
 }
 
 // ReturnAPIError creates API error response
