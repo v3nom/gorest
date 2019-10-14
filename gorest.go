@@ -2,11 +2,10 @@ package gorest
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
-	"golang.org/x/net/context"
-
-	"google.golang.org/appengine/log"
+	"context"
 )
 
 // Error struct for API error
@@ -30,7 +29,7 @@ func ReturnAPIError(ctx context.Context, w http.ResponseWriter, err error) error
 	}
 	jsonErr := json.NewEncoder(w).Encode(response)
 	if jsonErr != nil {
-		log.Errorf(ctx, "Error json err: %v, error: %v", jsonErr, err)
+		log.Printf("Error json err: %v, error: %v", jsonErr, err)
 	}
 	return err
 }
@@ -43,7 +42,7 @@ func ReturnAPIResponse(ctx context.Context, w http.ResponseWriter, data interfac
 	response.Data = data
 	jsonErr := json.NewEncoder(w).Encode(response)
 	if jsonErr != nil {
-		log.Errorf(ctx, "Response json err: %v, data: %#v", jsonErr, data)
+		log.Printf("Response json err: %v, data: %#v", jsonErr, data)
 	}
 	return jsonErr
 }
